@@ -727,7 +727,7 @@ main { flex: 1; display: flex; flex-direction: column; }
 <main>
 
   <!-- ── BANNER IMPORTAR BACKUP ── -->
-  <div id="import-banner" style="display:none;background:#fff8e1;border-bottom:2px solid #f0c040;padding:10px 32px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+  <div id="import-banner" style="display:none;background:#fff8e1;border-bottom:2px solid #f0c040;padding:10px 32px;align-items:center;gap:14px;flex-wrap:wrap;">
     <span style="font-size:20px;">📂</span>
     <span style="font-size:13px;color:#7d5a00;font-weight:600;">No se encontraron datos locales. ¿Tienes un backup? Cárgalo para continuar.</span>
     <button onclick="document.getElementById('imp-backup-file').click()" style="padding:7px 18px;background:#f0c040;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;color:#5a3e00;">📂 Cargar backup JSON</button>
@@ -2422,6 +2422,7 @@ function importarBackup(input) {
 
 // Mostrar banner si no hay datos al cargar
 function checkDatosIniciales() {
+  // Solo mostrar el banner si NO hay datos ni locales ni en Supabase
   var tieneDatos = registros.length > 0 || registrosDental.length > 0 || Object.keys(fichas).length > 0;
   var banner = document.getElementById('import-banner');
   if (banner) banner.style.display = tieneDatos ? 'none' : 'flex';
@@ -2736,6 +2737,7 @@ dInitFecha();
 updateClock();
 setInterval(updateClock, 15000);
 // Cargar datos desde Supabase (sobreescribe localStorage con datos actualizados)
+// checkDatosIniciales se llama dentro de initSupabase() después de cargar desde la nube
 initSupabase();
 </script>
 </div><!-- /app-root -->
