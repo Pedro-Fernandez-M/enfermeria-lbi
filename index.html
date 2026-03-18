@@ -355,9 +355,6 @@ main { display: block; }
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex: 1;
-  overflow-y: auto;
-  max-height: calc(100vh - 340px);
   padding-right: 4px;
 }
 
@@ -1577,18 +1574,18 @@ function renderHistorial() {
   }
 
   const sitColors = {
-    'Volvió a clases':   '#eafaf1;color:#1e8449',
-    'Retiro apoderado':  '#fef9e7;color:#ca6f1e',
-    'Derivado urgencia': '#fdedec;color:#c0392b',
-    'Llamado apoderado': '#eaf2ff;color:#1a5276',
-    'En observación':    '#f0f4f8;color:#5d6d7e',
+    'Volvió a clases':   'background:#eafaf1;color:#1e8449',
+    'Retiro apoderado':  'background:#fef9e7;color:#ca6f1e',
+    'Derivado urgencia': 'background:#fdedec;color:#c0392b',
+    'Llamado apoderado': 'background:#eaf2ff;color:#1a5276',
+    'En observación':    'background:#f0f4f8;color:#5d6d7e',
   };
 
   list.innerHTML = filtered.map(r => {
     const [y,m,d] = r.fecha.split('-');
     const fechaFmt = `${d}/${m}/${y}`;
     const sit = r.situacion || '—';
-    const sitStyle = sitColors[sit] ? `background:#${sitColors[sit]}` : '';
+    const sitStyle = sitColors[sit] ? sitColors[sit] : '';
     return `<div class="reg-card">
       <div class="reg-header">
         <span class="reg-nombre">${r.nombre}</span>
@@ -2172,18 +2169,18 @@ function dRenderHistorial() {
   }
 
   var sitColors = {
-    'Volvió a clases':   '#eafaf1;color:#1e8449',
-    'Retiro apoderado':  '#fef9e7;color:#ca6f1e',
-    'Derivado urgencia': '#fdedec;color:#c0392b',
-    'Llamado apoderado': '#eaf2ff;color:#1a5276',
-    'En observación':    '#f0f4f8;color:#5d6d7e',
+    'Volvió a clases':   'background:#eafaf1;color:#1e8449',
+    'Retiro apoderado':  'background:#fef9e7;color:#ca6f1e',
+    'Derivado urgencia': 'background:#fdedec;color:#c0392b',
+    'Llamado apoderado': 'background:#eaf2ff;color:#1a5276',
+    'En observación':    'background:#f0f4f8;color:#5d6d7e',
   };
 
   list.innerHTML = filtered.map(function(r) {
     var parts = r.fecha.split('-');
     var fechaFmt = parts[2]+'/'+parts[1]+'/'+parts[0];
     var sit = r.situacion || '—';
-    var sitStyle = sitColors[sit] ? 'background:#'+sitColors[sit] : '';
+    var sitStyle = sitColors[sit] ? sitColors[sit] : '';
     return '<div class="reg-card" style="border-left:4px solid #1a5276;">' +
       '<div class="reg-header">' +
         '<span class="reg-nombre">'+r.nombre+'</span>' +
