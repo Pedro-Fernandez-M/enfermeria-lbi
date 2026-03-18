@@ -1766,7 +1766,7 @@ function exportarCSV() {
     return true;
   });
 
-  let csv = 'Fecha,Hora,Curso,Nombre,RUT,Género,Apoderado,Teléfono,Motivo,Tratamiento,Situación Final\n';
+  let csv = 'sep=;\nFecha;Hora;Curso;Nombre;RUT;Género;Apoderado;Teléfono;Motivo;Tratamiento;Situación Final\n';
   filtered.forEach(r => {
     const [y,m,d] = r.fecha.split('-');
     const esc = v => `"${(v||'').toString().replace(/"/g,'""')}"`;
@@ -1776,7 +1776,7 @@ function exportarCSV() {
       r.apoderado!=='nan'?r.apoderado:'',
       r.telefono!=='nan'?r.telefono:'',
       r.motivo, r.tratamiento, r.situacion
-    ].map(esc).join(',') + '\n';
+    ].map(esc).join(';') + '\n';
   });
 
   const blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
@@ -2209,7 +2209,7 @@ function dEliminarReg(id) {
 }
 
 function dExportarCSV() {
-  var csv = 'Fecha,Hora,Curso,Alumno,RUT,Género,Apoderado,Teléfono,Motivo,Tratamiento,Situación\n';
+  var csv = 'sep=;\nFecha;Hora;Curso;Alumno;RUT;Género;Apoderado;Teléfono;Motivo;Tratamiento;Situación\n';
   var esc = function(v) { return '"' + (v||'').toString().replace(/"/g,'""') + '"'; };
   registrosDental.forEach(function(r) {
     var p = r.fecha.split('-');
@@ -2218,7 +2218,7 @@ function dExportarCSV() {
       r.apoderado!=='nan'?r.apoderado:'',
       r.telefono!=='nan'?r.telefono:'',
       r.motivo, r.tratamiento, r.situacion
-    ].map(esc).join(',') + '\n';
+    ].map(esc).join(';') + '\n';
   });
   var blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
   var a = document.createElement('a');
